@@ -1,5 +1,5 @@
 // ScheduCal Service Worker - Offline Support + Cache Handling
-const CACHE_NAME = 'scheducal-v5';
+const CACHE_NAME = 'scheducal-v6';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
