@@ -1,0 +1,27 @@
+{
+  "name": "ScheduCal",
+  "short_name": "ScheduCal",
+  "description": "Beautiful iOS-inspired calendar with daily summaries, tasks, and real notifications",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#007AFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/747/747310.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/747/747310.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "calendar", "finance"],
+  "splash_pages": null,
+  "prefer_related_applications": false
+}
