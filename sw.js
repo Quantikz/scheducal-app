@@ -1,5 +1,5 @@
 // ScheduCal Service Worker v9 - iOS PWA Stability + Security Hardened
-const CACHE_NAME = 'scheducal-v9';
+const CACHE_NAME = 'scheducal-v10';
 
 const STATIC_ASSETS = ['/', '/index.html'];
 
