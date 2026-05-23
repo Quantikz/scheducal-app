@@ -1,5 +1,5 @@
 // ScheduCal Service Worker - Smart Update Handling
-const CACHE_VERSION = 'scheducal-v10'; // ← INCREMENT THIS EVERY TIME YOU UPDATE THE APP!
+const CACHE_VERSION = 'scheducal-v13'; // ← INCREMENT THIS EVERY TIME YOU UPDATE THE APP!
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
