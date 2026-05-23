@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scheducal-production-v1';
+const CACHE_NAME = 'scheducal-production-v2';
 
 const APP_ASSETS = [
   './',
