@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#007AFF" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="ScheduCal" />
+<title>ScheduCal</title>
+
+<link rel="manifest" href="./production_manifest.json" />
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#f4f7fb;
+--surface:#ffffff;
+--primary:#007AFF;
+--text:#0f172a;
+--muted:#64748b;
+--border:#e2e8f0;
+--safe-bottom:env(safe-area-inset-bottom,0px);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+overflow-x:hidden;
+font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+body{
+min-height:100vh;
+-webkit-font-smoothing:antialiased;
+}
+
+.app{
+max-width:540px;
+margin:auto;
+padding-bottom:100px;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+backdrop-filter:blur(12px);
+background:rgba(255,255,255,.88);
+padding:18px;
+border-bottom:1px solid var(--border);
+}
+
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:48px;
+height:48px;
+border-radius:16px;
+}
+
+.logo h1{
+font-size:1.5rem;
+letter-spacing:-0.05em;
+}
+
+.icon-btn{
+width:46px;
+height:46px;
+border:none;
+border-radius:18px;
+background:var(--surface);
+font-size:1.1rem;
+}
+
+.hero{
+padding:18px;
+}
+
+.hero-card{
+background:linear-gradient(135deg,#007AFF,#2563eb);
+padding:24px;
+border-radius:32px;
+color:white;
+}
+
+.hero-card h2{
+font-size:2rem;
+letter-spacing:-0.06em;
+}
+
+.calendar{
+padding:0 18px;
+}
+
+.weekdays{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+margin-bottom:8px;
+}
+
+.weekdays div{
+text-align:center;
+font-size:.75rem;
+color:var(--muted);
+font-weight:700;
+}
+
+.calendar-grid{
+display:grid;
+grid-template-columns:repeat(7,minmax(0,1fr));
+gap:8px;
+}
+
+.day{
+background:var(--surface);
+min-height:72px;
+border-radius:20px;
+padding:8px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+
+.today{
+border:2px solid var(--primary);
+background:#dbeafe;
+}
+
+.dot-wrap{
+display:flex;
+gap:4px;
+}
+
+.dot{
+width:6px;
+height:6px;
+border-radius:999px;
+}
+
+.blue{background:#007AFF;}
+.green{background:#10b981;}
+.orange{background:#f59e0b;}
+
+.agenda{
+padding:24px 18px;
+}
+
+.agenda h3{
+margin-bottom:14px;
+font-size:1.1rem;
+}
+
+.card{
+background:var(--surface);
+padding:18px;
+border-radius:24px;
+margin-bottom:14px;
+box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+
+.time{
+font-size:.75rem;
+color:var(--muted);
+font-weight:700;
+}
+
+.bottom-nav{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+height:78px;
+padding-bottom:var(--safe-bottom);
+background:rgba(255,255,255,.92);
+backdrop-filter:blur(14px);
+border-top:1px solid var(--border);
+display:flex;
+justify-content:center;
+}
+
+.nav-inner{
+width:100%;
+max-width:540px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+}
+
+.nav-btn{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:.72rem;
+color:var(--muted);
+font-weight:600;
+}
+
+.active{
+color:var(--primary);
+}
+
+.fab{
+width:62px;
+height:62px;
+border:none;
+border-radius:24px;
+background:var(--primary);
+color:white;
+font-size:1.6rem;
+transform:translateY(-24px);
+}
+
+.install-banner{
+margin:18px;
+padding:16px;
+background:white;
+border-radius:22px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+
+.install-banner button{
+height:44px;
+padding:0 18px;
+border:none;
+border-radius:16px;
+background:var(--primary);
+color:white;
+font-weight:600;
+}
+
+@media(min-width:768px){
+.app{
+max-width:1400px;
+display:grid;
+grid-template-columns:320px 1fr 360px;
+gap:24px;
+padding:24px;
+}
+
+.bottom-nav{
+display:none;
+}
+
+.calendar{
+padding:0;
+}
+
+.agenda{
+padding:0;
+}
+
+.hero{
+padding:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<div class="topbar">
+<div class="logo">
+<img src="./icons/icon-192.png" alt="ScheduCal">
+<div>
+<h1>ScheduCal</h1>
+<div style="font-size:.8rem;color:#64748b;">Production PWA</div>
+</div>
+</div>
+
+<button class="icon-btn" onclick="enableNotifications()">🔔</button>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-card">
+<h2>June 2026</h2>
+<p>Minimal mobile-first scheduling experience</p>
+</div>
+</section>
+
+<div class="install-banner" id="installBanner" style="display:none;">
+<div>
+<div style="font-weight:700;">Install ScheduCal</div>
+<div style="font-size:.8rem;color:#64748b;">Fast offline access</div>
+</div>
+
+<button onclick="installPWA()">Install</button>
+</div>
+
+<section class="calendar">
+
+<div class="weekdays">
+<div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+</div>
+
+<div class="calendar-grid">
+<div class="day"><div>1</div></div>
+<div class="day"><div>2</div></div>
+
+<div class="day today">
+<div>3</div>
+<div class="dot-wrap">
+<div class="dot blue"></div>
+<div class="dot orange"></div>
+</div>
+</div>
+
+<div class="day"><div>4</div></div>
+<div class="day"><div>5</div></div>
+
+<div class="day">
+<div>6</div>
+<div class="dot-wrap">
+<div class="dot green"></div>
+</div>
+</div>
+
+<div class="day"><div>7</div></div>
+</div>
+
+</section>
+
+<section class="agenda">
+<h3>Today's Agenda</h3>
+
+<div class="card">
+<div class="time">09:00 AM</div>
+<div style="margin-top:8px;font-weight:700;">Market Opening Review</div>
+</div>
+
+<div class="card">
+<div class="time">02:00 PM</div>
+<div style="margin-top:8px;font-weight:700;">Client Strategy Meeting</div>
+</div>
+
+</section>
+
+</div>
+
+<nav class="bottom-nav">
+<div class="nav-inner">
+
+<div class="nav-btn active">
+<div>📅</div>
+<span>Home</span>
+</div>
+
+<div class="nav-btn">
+<div>📝</div>
+<span>Tasks</span>
+</div>
+
+<button class="fab">+</button>
+
+<div class="nav-btn">
+<div>🔍</div>
+<span>Search</span>
+</div>
+
+<div class="nav-btn">
+<div>🙂</div>
+<span>Profile</span>
+</div>
+
+</div>
+</nav>
+
+<script>
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', e => {
+e.preventDefault();
+deferredPrompt = e;
+document.getElementById('installBanner').style.display = 'flex';
+});
+
+async function installPWA(){
+if(!deferredPrompt) return;
+
+deferredPrompt.prompt();
+await deferredPrompt.userChoice;
+deferredPrompt = null;
+document.getElementById('installBanner').style.display = 'none';
+}
+
+async function enableNotifications(){
+
+if(!('Notification' in window)){
+alert('Notifications not supported');
+return;
+}
+
+const permission = await Notification.requestPermission();
+
+if(permission === 'granted'){
+
+if(navigator.serviceWorker.controller){
+navigator.serviceWorker.controller.postMessage({
+type:'SHOW_NOTIFICATION',
+title:'ScheduCal',
+body:'Notifications enabled successfully'
+});
+}
+
+}
+}
+
+if('serviceWorker' in navigator){
+window.addEventListener('load', async () => {
+try{
+await navigator.serviceWorker.register('./production_sw.js');
+console.log('SW Registered');
+}catch(err){
+console.error(err);
+}
+});
+}
+</script>
+
+</body>
+</html>
