@@ -1,9 +1,9 @@
 // ScheduCal Service Worker - Smart Update Handling
 const CACHE_VERSION = 'scheducal-v10'; // ← INCREMENT THIS EVERY TIME YOU UPDATE THE APP!
 const ASSETS_TO_CACHE = [
-    './',
-    './index.html',
-    './manifest.json'
+    '/',
+    '/index.html',
+    '/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
