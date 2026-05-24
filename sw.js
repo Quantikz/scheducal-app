@@ -1,5 +1,5 @@
 /* ScheduCal Service Worker v2 — Android + iOS notification support */
-const CACHE_NAME = 'scheducal-v2';
+const CACHE_NAME = 'scheducal-v4';
 
 /* ── Install: cache shell assets ── */
 self.addEventListener('install', e => {
